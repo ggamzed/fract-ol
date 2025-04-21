@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdemirci <gdemirci@student.42kocaeli.  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/21 21:17:25 by gdemirci          #+#    #+#             */
+/*   Updated: 2025/04/21 21:17:27 by gdemirci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
@@ -23,15 +35,15 @@ typedef struct s_fractal
 	int		endian;
 	int		x;
 	int		y;
-	int 	ac;
+	int		ac;
 	double	reel_c;
 	double	imag_c;
 	int		color;
 	char	*name;
-	double r_min;
-	double r_max;
-	double i_min;
-	double i_max;
+	double	r_min;
+	double	r_max;
+	double	i_min;
+	double	i_max;
 }			t_fractal;
 
 void	draw_mandelbrot(t_fractal *fract);

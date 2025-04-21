@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdemirci <gdemirci@student.42kocaeli.  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/21 21:18:09 by gdemirci          #+#    #+#             */
+/*   Updated: 2025/04/21 21:18:11 by gdemirci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	calculate_mandelbrot(t_fractal *fractal, double reel_c, double imag_c)

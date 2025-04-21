@@ -6,9 +6,9 @@ RM		=			rm -f
 CFLAGS	=			-Wall -Wextra -Werror
 NAME	=			fractol
 
-MLX_PATH = minilibx
-MLX_NAME = libmlx.a
-MLX_LIB = $(MLX_PATH)/$(MLX_NAME)
+MLX_PATH = 			minilibx
+MLX_NAME = 			libmlx.a
+MLX_LIB = 			$(MLX_PATH)/$(MLX_NAME)
 
 all:				$(MLX_LIB) $(NAME)
 
