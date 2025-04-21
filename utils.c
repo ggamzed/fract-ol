@@ -17,50 +17,65 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-int	ft_isdigit(int c)
+double parse_integer_part(const char **str)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-int	ft_skip(char *str, int *sign)
-{
-	int	i;
+    double result;
 
-	i = 0;
-	while (str[i] <= ' ')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			*sign *= -1;
-		i++;
-	}
-	return (i);
+	result = 0.0;
+    while (**str >= '0' && **str <= '9')
+    {
+        result = result * 10.0 + (**str - '0');
+        (*str)++;
+    }
+    return result;
 }
 
-double	ft_atod(char *str)
+double parse_fractional_part(const char **str)
 {
-	int		i;
-	double	nb;
-	int		is_neg;
-	double	div;
+    double fraction;
+    double divisor;
+    
+	fraction = 0.0;
+	divisor = 10.0;
+    if (**str == '.')
+    {
+        (*str)++;
+        while (**str >= '0' && **str <= '9')
+        {
+            fraction += (**str - '0') / divisor;
+            divisor *= 10.0;
+            (*str)++;
+        }
+    }
+    return fraction;
+}
 
-	is_neg = 1;
-	nb = 0;
-	div = 0.1;
-	i = ft_skip(str, &is_neg);
-	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
-		nb = (nb * 10.0) + (str[i++] - '0');
-	if (str[i] == '.')
-		i++;
-	while (str[i] && ft_isdigit(str[i]))
-	{
-		nb += (str[i] - '0') * div;
-		div *= 0.1;
-		i++;
-	}
-	if (str[i] && !ft_isdigit(str[i]))
-		write(1, "Invalid value\n", 14);
-	return (nb * is_neg);
+
+double ft_atod(const char *str)
+{
+    double result;
+    double fraction;
+    int sign;
+
+	result = 0.0;
+	fraction = 0.0;
+	sign = 1;
+    while (*str == ' ' || *str == '\t')
+        str++;
+    if (*str == '-' )
+    {
+        sign = -1;
+        str++;
+    }
+    else if (*str == '+')
+        str++;
+    if (*str == '\0')
+        exit(EXIT_FAILURE);
+    result = parse_integer_part(&str);
+    if (*str == '.' && (*(str + 1) < '0' || *(str + 1) > '9'))
+        exit(EXIT_FAILURE);
+    fraction = parse_fractional_part(&str);
+    if (*str != '\0')
+        exit(EXIT_FAILURE);
+    return (sign * (result + fraction));
 }

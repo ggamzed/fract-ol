@@ -1,4 +1,4 @@
-# include "minilibx/mlx.h"
+#include "minilibx/mlx.h"
 #include "fractol.h"
 #include <unistd.h>
 
@@ -12,7 +12,6 @@ void	fill_buff_w_color(t_fractal *fract, int x, int y, int color)
 
 int	free_fractal(t_fractal *fract)
 {
-
 	if (fract->img)
 		mlx_destroy_image(fract->mlx, fract->img);
 	if (fract->win)
@@ -26,14 +25,13 @@ int	free_fractal(t_fractal *fract)
 	return (0);
 }
 
-void arg_error(void)
+void	arg_error(void)
 {
 	write(1, "Mandelbrot From: ./fractol mandel\n", 34);
 	write(1, "Julia From: ./fractol julia <reel_c> <imag_c>\n", 46);
 	write(1, "Possible Julia Values:\n", 23);
 	write(1, "<-0.745429> <0.05>\n", 19);
 	write(1, "<-0.70176> <0.3842>\n", 20);
+	write(1, "<0.45> <-0.1428>\n", 17);
 	write(1, "<0.285> <0.01>\n", 15);
-	// 0.45 -0.1428
-
 }

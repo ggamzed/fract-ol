@@ -1,4 +1,4 @@
-# include "minilibx/mlx.h"
+#include "minilibx/mlx.h"
 #include "fractol.h"
 
 int	draw_fractal(t_fractal *fract)
@@ -10,7 +10,6 @@ int	draw_fractal(t_fractal *fract)
 	mlx_put_image_to_window(fract->mlx, fract->win, fract->img, 0, 0);
 	return (0);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -24,6 +23,5 @@ int	main(int argc, char **argv)
 	mlx_hook(fract.win, 17, 0L, free_fractal, &fract);
 	draw_fractal(&fract);
 	mlx_loop(fract.mlx);
-
 	return (0);
 }

@@ -1,19 +1,18 @@
 #include "fractol.h"
 
-
 void	calculate_julia(t_fractal *fract, double reel_z, double imag_z)
 {
-	int iter;
-	double tmp;
+	int		iter;
+	double	tmp;
 
 	iter = 0;
-	while(++iter < MAX_ITERATIONS)
+	while (++iter < MAX_ITERATIONS)
 	{	
 		tmp = 2 * reel_z * imag_z + fract->imag_c;
 		reel_z = reel_z * reel_z - imag_z * imag_z + fract->reel_c;
 		imag_z = tmp;
 		if ((reel_z * reel_z + imag_z * imag_z) > 4.0)
-			break;
+			break ;
 	}
 	if (iter == MAX_ITERATIONS)
 		fill_buff_w_color(fract, fract->x, fract->y, 0x000000);

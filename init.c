@@ -1,4 +1,4 @@
-# include "minilibx/mlx.h"
+#include "minilibx/mlx.h"
 #include "fractol.h"
 
 void	init_fractal(t_fractal *fract, char **str)
@@ -33,5 +33,6 @@ void	init_mlx(t_fractal *fract)
 	fract->mlx = mlx_init();
 	fract->win = mlx_new_window(fract->mlx, WIDTH, HEIGHT, "fractol");
 	fract->img = mlx_new_image(fract->mlx, WIDTH, HEIGHT);
-	fract->buff = mlx_get_data_addr(fract->img, &fract->pixel_bits, &fract->line_bytes, &fract->endian);
+	fract->buff = mlx_get_data_addr(fract->img, &fract->pixel_bits,
+			&fract->line_bytes, &fract->endian);
 }

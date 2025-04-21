@@ -38,15 +38,15 @@ void	draw_mandelbrot(t_fractal *fract);
 void	draw_julia(t_fractal *fract);
 void	init_fractal(t_fractal *fract, char **str);
 void	init_mlx(t_fractal *fract);
-int	key_hook(int key_code, t_fractal *fract);
-int	mouse_hook(int button, int x, int y, void *param);
+int		key_hook(int key_code, t_fractal *fract);
+int		mouse_hook(int button, int x, int y, void *param);
 void	calculate_julia(t_fractal *fract, double reel_z, double imag_z);
 void	calculate_mandelbrot(t_fractal *fractal, double reel_c, double imag_c);
-int	draw_fractal(t_fractal *fract);
+int		draw_fractal(t_fractal *fract);
 void	fill_buff_w_color(t_fractal *fract, int x, int y, int color);
-int	free_fractal(t_fractal *fract);
-void arg_error(void);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		free_fractal(t_fractal *fract);
+void	arg_error(void);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 double	ft_atod(char *str);
 
 #endif
