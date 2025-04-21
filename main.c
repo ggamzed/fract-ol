@@ -1,4 +1,4 @@
-
+# include "minilibx/mlx.h"
 #include "fractol.h"
 
 int	draw_fractal(t_fractal *fract)

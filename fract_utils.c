@@ -1,26 +1,28 @@
+# include "minilibx/mlx.h"
 #include "fractol.h"
+#include <unistd.h>
 
-void	fill_buff_w_color(t_fractal *fractal, int x, int y, int color)
+void	fill_buff_w_color(t_fractal *fract, int x, int y, int color)
 {
 	int	*buffer;
 
-	buffer = fractal->buff;
+	buffer = fract->buff;
 	buffer[(y * WIDTH) + x] = color;
 }
 
 int	free_fractal(t_fractal *fract)
 {
 
-		if (fract->img)
-			mlx_destroy_image(fract->mlx, fract->img);
-		if (fract->win)
-			mlx_destroy_window(fract->mlx, fract->win);
-		if (fract->mlx)
-		{
-			mlx_destroy_display(fract->mlx);
-			free(fract->mlx);
-		}
-	exit(0);
+	if (fract->img)
+		mlx_destroy_image(fract->mlx, fract->img);
+	if (fract->win)
+		mlx_destroy_window(fract->mlx, fract->win);
+	if (fract->mlx)
+	{
+		mlx_destroy_display(fract->mlx);
+		free(fract->mlx);
+	}
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 

@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void	*draw_mandelbrot(t_fractal *fract)
+void	draw_mandelbrot(t_fractal *fract)
 {
 	double real_c;
 	double imag_c;
@@ -19,7 +19,6 @@ void	*draw_mandelbrot(t_fractal *fract)
 		fract->x++;
 		fract->y = 0;
 	}
-	return (NULL);
 }
 
 void	draw_julia(t_fractal *fract)

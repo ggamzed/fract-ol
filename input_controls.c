@@ -1,4 +1,3 @@
-
 #include "fractol.h"
 
 void	zoom(t_fractal *f, double zoom_factor)
@@ -23,12 +22,8 @@ int	key_hook(int key_code, t_fractal *fract)
 {
 	if (key_code == ESC)
 	{
-		free_fractal(fract); // bunu kullandığın yerde hata leak logları çıkıyor
-		//exit_succ_fract(fract);
-		exit(0);
+		free_fractal(fract);
 	}
-	//(void)fract;
-
 	return (0);
 }
 

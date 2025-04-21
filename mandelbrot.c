@@ -1,4 +1,3 @@
-
 #include "fractol.h"
 
 void	calculate_mandelbrot(t_fractal *fractal, double reel_c, double imag_c)
