@@ -1,5 +1,5 @@
 SRCS	=			draw.c init.c input_controls.c julia.c main.c mandelbrot.c \
-					utils_lib.c utils.c
+					fract_utils.c utils.c
 OBJS	=			$(SRCS:.c=.o)
 CC		=			cc
 RM		=			rm -f

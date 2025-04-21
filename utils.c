@@ -1,75 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lgaudin <lgaudin@student.42malaga.com>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 13:27:37 by lgaudin           #+#    #+#             */
-/*   Updated: 2023/06/17 18:35:55 by lgaudin          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <stdlib.h>
 #include "fractol.h"
+#include <unistd.h>
 
-void	fill_buff_w_color(t_fractal *fractal, int x, int y, int color)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	*buffer;
+	size_t	i;
 
-	buffer = fractal->buff;
-	buffer[(y * WIDTH) + x] = color;
-}
-
-int	free_fractal(t_fractal *fract)
-{
-
-		if (fract->img)
-			mlx_destroy_image(fract->mlx, fract->img);
-		if (fract->win)
-			mlx_destroy_window(fract->mlx, fract->win);
-		if (fract->mlx)
-		{
-			mlx_destroy_display(fract->mlx);
-			free(fract->mlx);
-		}
-	exit(0);
-	return (0);
-}
-/*
-void free_fract(t_fractal *fract)
-{
-	if (fract)
+	i = 0;
+	while (i < n && s1[i] && s2[i])
 	{
-		if (fract->img)
-			mlx_destroy_image(fract->mlx, fract->img);
-		if (fract->win)
-			mlx_destroy_window(fract->mlx, fract->win);
-		if (fract->mlx)
-		{
-			//mlx_destroy_display(fract->mlx);
-			free(fract->mlx);
-		}
-		free(fract);
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-}
-
-int	exit_succ_fract(t_fractal *fract)
-{
-	if (fract)
-		free_fract(fract);
-	exit(EXIT_SUCCESS);
+	if (i < n)
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return (0);
 }
-
-int exit_fail_fract(t_fractal *fract)
-{
-	if (fract)
-		free_fract(fract);
-	exit(EXIT_FAILURE);
-	return (0);
-}
-	*/
-
 
 int	ft_isdigit(int c)
 {
@@ -117,16 +64,4 @@ double	ft_atod(char *str)
 	if (str[i] && !ft_isdigit(str[i]))
 		write(1, "Invalid value\n", 14);
 	return (nb * is_neg);
-}
-
-void arg_error(void)
-{
-	write(1, "Mandelbrot From: ./fractol mandel\n", 34);
-	write(1, "Julia From: ./fractol julia <reel_c> <imag_c>\n", 46);
-	write(1, "Possible Julia Values:\n", 23);
-	write(1, "<-0.745429> <0.05>\n", 19);
-	write(1, "<-0.70176> <0.3842>\n", 20);
-	write(1, "<0.285> <0.01>\n", 15);
-	// 0.45 -0.1428
-
 }
