@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	zoom(t_fractal *f, double zoom_factor)
+static void	zoom(t_fractal *f, double zoom_factor)
 {
 	double	range_real;
 	double	range_imag;

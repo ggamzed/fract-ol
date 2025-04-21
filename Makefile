@@ -13,10 +13,10 @@ MLX_LIB = 			$(MLX_PATH)/$(MLX_NAME)
 all:				$(MLX_LIB) $(NAME)
 
 $(MLX_LIB):
-					make -sC $(MLX_PATH)
+					make -C $(MLX_PATH)
 
 $(NAME):			$(OBJS) $(MLX_LIB)
-					$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
+					$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(MLX_PATH) -lmlx -lXext -lX11
 clean:
 					$(RM) $(OBJS)
 					make clean -C $(MLX_PATH)

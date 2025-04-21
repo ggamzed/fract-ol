@@ -29,14 +29,14 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-int	is_digit(char *str)
+static int	is_digit(char *str)
 {
 	if ('0' <= *str && *str <= '9')
 		return (1);
 	return (0);
 }
 
-double	parse_int(char **str)
+static double	parse_int(char **str)
 {
 	double	result;
 
@@ -49,7 +49,7 @@ double	parse_int(char **str)
 	return (result);
 }
 
-double	parse_fractional(char **str)
+static double	parse_fractional(char **str)
 {
 	double	fraction;
 	double	divisor;
