@@ -1,7 +1,7 @@
 #include "minilibx/mlx.h"
 #include "fractol.h"
 
-void	init_fractal(t_fractal *fract, char **str)
+void	check_args(t_fractal *fract, char **str)
 {
 	fract->name = str[1];
 	if (fract->ac == 4 && ft_strncmp(fract->name, "Julia", 6) == 0)
@@ -19,6 +19,10 @@ void	init_fractal(t_fractal *fract, char **str)
 		arg_error();
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	init_fractal(t_fractal *fract)
+{
 	fract->color = 0x1E90FF;
 	fract->x = 0;
 	fract->y = 0;
@@ -26,6 +30,9 @@ void	init_fractal(t_fractal *fract, char **str)
 	fract->r_max = 2.0;
 	fract->i_min = -2.0;
 	fract->i_max = 2.0;
+	fract->win = NULL;
+	fract->img = NULL;
+	fract->mlx = NULL;
 }
 
 void	init_mlx(t_fractal *fract)

@@ -36,7 +36,8 @@ typedef struct s_fractal
 
 void	draw_mandelbrot(t_fractal *fract);
 void	draw_julia(t_fractal *fract);
-void	init_fractal(t_fractal *fract, char **str);
+void	check_args(t_fractal *fract, char **str);
+void	init_fractal(t_fractal *fract);
 void	init_mlx(t_fractal *fract);
 int		key_hook(int key_code, t_fractal *fract);
 int		mouse_hook(int button, int x, int y, void *param);

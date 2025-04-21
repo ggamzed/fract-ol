@@ -16,7 +16,8 @@ int	main(int argc, char **argv)
 	t_fractal	fract;
 
 	fract.ac = argc;
-	init_fractal(&fract, argv);
+	check_args(&fract, argv);
+	init_fractal(&fract);
 	init_mlx(&fract);
 	mlx_key_hook(fract.win, key_hook, &fract);
 	mlx_mouse_hook(fract.win, mouse_hook, &fract);
