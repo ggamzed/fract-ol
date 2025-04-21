@@ -29,12 +29,6 @@ void	zoom(t_fractal *f, double zoom_factor)
 	f->i_max = center_imag + range_imag / 2;
 }
 
-void	set_random_julia(double *cx, double *cy)
-{
-	*cx = generate_random_c();
-	*cy = generate_random_c();
-}
-
 
 int	key_hook(int key_code, t_fractal *fract)
 {

@@ -15,23 +15,28 @@
 void	init_fractal(t_fractal *fract, char **str)
 {
 	fract->name = str[1];
+	if (fract->ac == 4 && ft_strncmp(fract->name, "Julia", 6) == 0)
+	{
+		fract->reel_c = ft_atod(str[2]);
+		fract->imag_c = ft_atod(str[3]);
+	}
+	else if (fract->ac == 2 && ft_strncmp(fract->name, "Mandelbrot", 11) == 0)
+	{
+		fract->reel_c = 0.0;
+		fract->imag_c = 0.0;
+	}
+	else
+	{
+		arg_error();
+		exit(EXIT_FAILURE);
+	}
 	fract->color = 0x1E90FF;
-	//fract->color = 0xFFC30B;
-	fract->reel_c = 0.0;
-	fract->imag_c = 0.0;
-	//fract->reel_c = ft_atod(str[2]);
-	//fract->imag_c = ft_atod(str[3]);
 	fract->x = 0;
 	fract->y = 0;
 	fract->r_min = -2.0;
 	fract->r_max = 2.0;
 	fract->i_min = -2.0;
 	fract->i_max = 2.0;
-	if (fract->ac == 4 && ft_strncmp(fract->name, "julia", 6) == 0)
-	{
-		fract->reel_c = ft_atod(str[2]);
-		fract->imag_c = ft_atod(str[3]);
-	}
 }
 
 void	init_mlx(t_fractal *fract)

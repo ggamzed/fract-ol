@@ -70,10 +70,6 @@ int exit_fail_fract(t_fractal *fract)
 }
 	*/
 
-double	generate_random_c(void)
-{
-	return (((double)rand() / RAND_MAX) * 3.0 - 1.5);
-}
 
 int	ft_isdigit(int c)
 {
