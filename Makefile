@@ -1,50 +1,29 @@
-GREEN = \033[0;32m
-RED = \033[0;31m
-RESET = \033[0m
+SRCS	=			draw.c init.c input_controls.c julia.c main.c mandelbrot.c \
+					utils_lib.c utils.c
+OBJS	=			$(SRCS:.c=.o)
+CC		=			cc
+RM		=			rm -f
+CFLAGS	=			-Wall -Wextra -Werror
+NAME	=			fractol
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
+MLX_PATH = minilibx
+MLX_NAME = libmlx.a
+MLX_LIB = $(MLX_PATH)/$(MLX_NAME)
 
-MLX_PATH = include/minilibx
+all:				$(MLX_LIB) $(NAME)
 
-SRC_DIR = src
-OBJ_DIR = obj
-INCLUDE_DIR = include
+$(MLX_LIB):
+					make -sC $(MLX_PATH)
 
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
-
-MLX = $(MLX_PATH)/libmlx.a
-
-NAME = fractol
-
-all: $(NAME)
-
-$(NAME): $(OBJ_FILES)  $(MLX)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
-	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR)  -I$(MLX_PATH) -c -o $@ $<
-	@echo "$(NAME): $(GREEN)$(OBJ_DIR) was created$(RESET)"
-
-$(MLX):
-	@$(MAKE) -C $(MLX_PATH)
-	@echo "$(NAME): $(GREEN)$(MLX) was created$(RESET)"
-
+$(NAME):			$(OBJS) $(MLX_LIB)
+					$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
 clean:
-	@$(MAKE) -C $(MLX_PATH) clean
-	@rm -r $(OBJ_DIR)
-	@echo "$(NAME): $(RED)$(OBJ_DIR) was deleted$(RESET)"
-	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+					$(RM) $(OBJS)
+					make clean -C $(MLX_PATH)
 
-fclean: clean
-	@echo "$(NAME):  was deleted$(RESET)"
-	@rm $(NAME)
-	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+fclean:	clean
+					$(RM) $(NAME)
+					
+re:		fclean all
 
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re
