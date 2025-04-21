@@ -27,6 +27,7 @@ int	free_fractal(t_fractal *fract)
 
 void	arg_error(void)
 {
+	write(1, "Error:\n", 7);
 	write(1, "Mandelbrot From: ./fractol mandel\n", 34);
 	write(1, "Julia From: ./fractol julia <reel_c> <imag_c>\n", 46);
 	write(1, "Possible Julia Values:\n", 23);
@@ -34,4 +35,10 @@ void	arg_error(void)
 	write(1, "<-0.70176> <0.3842>\n", 20);
 	write(1, "<0.45> <-0.1428>\n", 17);
 	write(1, "<0.285> <0.01>\n", 15);
+}
+
+void	check_err(void)
+{
+	write(1, "Error:\n", 7);
+	exit(EXIT_FAILURE);
 }

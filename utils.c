@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "fractol.h"
 #include <unistd.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -17,65 +17,71 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-double parse_integer_part(const char **str)
+int	is_digit(char *str)
 {
-    double result;
+	if ('0' <= *str && *str <= '9')
+		return (1);
+	return (0);
+}
+
+double	parse_int(char **str)
+{
+	double	result;
 
 	result = 0.0;
-    while (**str >= '0' && **str <= '9')
-    {
-        result = result * 10.0 + (**str - '0');
-        (*str)++;
-    }
-    return result;
+	while (is_digit(*str))
+	{
+		result = result * 10.0 + (**str - '0');
+		(*str)++;
+	}
+	return (result);
 }
 
-double parse_fractional_part(const char **str)
+double	parse_fractional(char **str)
 {
-    double fraction;
-    double divisor;
-    
+	double	fraction;
+	double	divisor;
+
 	fraction = 0.0;
 	divisor = 10.0;
-    if (**str == '.')
-    {
-        (*str)++;
-        while (**str >= '0' && **str <= '9')
-        {
-            fraction += (**str - '0') / divisor;
-            divisor *= 10.0;
-            (*str)++;
-        }
-    }
-    return fraction;
+	if (**str == '.')
+	{
+		(*str)++;
+		if (!is_digit(*str))
+			check_err();
+		while (is_digit(*str))
+		{
+			fraction += (**str - '0') / divisor;
+			divisor *= 10.0;
+			(*str)++;
+		}
+	}
+	return (fraction);
 }
 
-
-double ft_atod(const char *str)
+double	ft_atof(char *str)
 {
-    double result;
-    double fraction;
-    int sign;
+	double	result;
+	double	fraction;
+	int		sign;
 
 	result = 0.0;
 	fraction = 0.0;
 	sign = 1;
-    while (*str == ' ' || *str == '\t')
-        str++;
-    if (*str == '-' )
-    {
-        sign = -1;
-        str++;
-    }
-    else if (*str == '+')
-        str++;
-    if (*str == '\0')
-        exit(EXIT_FAILURE);
-    result = parse_integer_part(&str);
-    if (*str == '.' && (*(str + 1) < '0' || *(str + 1) > '9'))
-        exit(EXIT_FAILURE);
-    fraction = parse_fractional_part(&str);
-    if (*str != '\0')
-        exit(EXIT_FAILURE);
-    return (sign * (result + fraction));
+	while (*str == ' ' || *str == '\t')
+		str++;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	if (*str == '\0')
+		check_err();
+	result = parse_int(&str);
+	fraction = parse_fractional(&str);
+	if (*str != '\0')
+		check_err();
+	return (sign * (result + fraction));
 }

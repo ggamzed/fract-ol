@@ -6,8 +6,8 @@ void	check_args(t_fractal *fract, char **str)
 	fract->name = str[1];
 	if (fract->ac == 4 && ft_strncmp(fract->name, "Julia", 6) == 0)
 	{
-		fract->reel_c = ft_atod(str[2]);
-		fract->imag_c = ft_atod(str[3]);
+		fract->reel_c = ft_atof(str[2]);
+		fract->imag_c = ft_atof(str[3]);
 	}
 	else if (fract->ac == 2 && ft_strncmp(fract->name, "Mandelbrot", 11) == 0)
 	{

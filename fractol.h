@@ -48,6 +48,7 @@ void	fill_buff_w_color(t_fractal *fract, int x, int y, int color);
 int		free_fractal(t_fractal *fract);
 void	arg_error(void);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-double	ft_atod(char *str);
+double	ft_atof(char *str);
+void	check_err(void);
 
 #endif
