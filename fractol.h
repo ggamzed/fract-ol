@@ -17,8 +17,6 @@
 
 # define WIDTH 400
 # define HEIGHT 400
-# define THREAD_WIDTH 7
-# define THREAD_NUMBER 100
 # define MAX_ITERATIONS 100
 # define ESC 65307
 # define SCROLL_UP 4
